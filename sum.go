@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func sum(a, b int) int {
+func sum_function(a, b int) int {
 	return a + b
 }
 func main() {
@@ -12,7 +12,7 @@ func main() {
 	fmt.Scan(&a)
 	fmt.Println("Enter the second number: ")
 	fmt.Scan(&b)
-	sum := sum(a, b)
+	sum := sum_function(a, b)
 	fmt.Println(sum)
 
 }
