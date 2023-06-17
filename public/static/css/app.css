@@ -1,0 +1,35 @@
+:root{  
+ --light-background: #f5f6f7;
+ --light-block-border: #000000;
+ --light-block-background: #fff;
+ --light-input-border-color:  #d3d4d7;
+}
+
+
+body{ 
+    margin: 0;
+    padding: 0;
+    background-color: var(--light-background);
+} 
+.block-content{
+    background-color: var(--light-block-background);
+    /* border: solid var(--light-block-border) 3px; */
+    padding: 30px 40px 30px 40px;
+    box-shadow: 0 1px 4px rgba(21,27,38,.12);
+    border: 0;
+}
+.block-content .input-box{
+    border: solid 1px var(--light-input-border-color);
+    border-radius: 8px;
+    padding: 16px 20px;
+    width: 100%;
+    height: auto;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+
+}
+.form-label, .display-5{
+    font-family: 'Baloo Tammudu 2', cursive;
+}

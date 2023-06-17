@@ -14,7 +14,7 @@ type URLStruct struct {
 }
 
 func IndexHandler(c echo.Context) error {
-	return c.HTML(http.StatusOK, "<h1>Hello</h1>")
+	return c.Render(http.StatusOK, "app.html", nil)
 }
 
 func APIRequestHandler(c echo.Context) error {
