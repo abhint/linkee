@@ -16,9 +16,9 @@ type UrlMapping struct {
 
 type UrlMappingsQuery interface {
 	IsExists(colum, value string, mapping *UrlMapping) (Boolean bool, err error)
-	Select(url string) (um *UrlMapping, err error)
 	Key(length int, mapping *UrlMapping) string
 	Insert(url string, mapping *UrlMapping) (err error)
+	Select(key string, mapping *UrlMapping) (err error)
 }
 
 type UrlMappings struct {
@@ -59,7 +59,7 @@ func (m *UrlMappings) Insert(url string, mapping *UrlMapping) (err error) {
 	isExists, _ := m.IsExists("url", url, mapping)
 	key := m.Key(6, mapping)
 	length := len(url)
-	fmt.Println(isExists)
+
 	if isExists {
 		return nil
 	}
@@ -76,7 +76,7 @@ func (m *UrlMappings) Insert(url string, mapping *UrlMapping) (err error) {
 }
 
 func (m *UrlMappings) Key(length int, mapping *UrlMapping) string {
-	fmt.Print("KEY")
+
 	key := strandom.RandomString(6)
 	isExists, _ := m.IsExists("key", key, mapping)
 	if isExists {
@@ -85,8 +85,22 @@ func (m *UrlMappings) Key(length int, mapping *UrlMapping) string {
 	return key
 }
 
-func (m *UrlMappings) Select(key string) (doc *UrlMapping, err error) {
-	// Implement the Select method
-	print("Hello")
-	return
+func (m *UrlMappings) Select(key string, mapping *UrlMapping) (err error) {
+
+	query := "SELECT key,url FROM UrlMapping WHERE key == ?"
+	rows, err := m.Query(query, key)
+	if err != nil {
+		log.Fatal(err)
+		return err
+	}
+	defer rows.Close()
+	for rows.Next() {
+		err = rows.Scan(&mapping.Key, &mapping.Url)
+		if err != nil {
+			log.Fatal(err)
+			return err
+		}
+	}
+
+	return nil
 }
