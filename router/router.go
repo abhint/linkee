@@ -39,12 +39,15 @@ func APIRequestHandler(c echo.Context) error {
 }
 
 func KeyRequestHandler(c echo.Context) error {
-	key := c.Param("key")
 	mapping := &database.UrlMapping{}
 	db := c.Get("db").(*database.Database)
+	key := c.Param("key")
+
 	if err := db.UrlMappings.Select(key, mapping); err != nil {
-		c.Redirect(http.StatusMovedPermanently, "/")
+		return c.Redirect(http.StatusMovedPermanently, "/")
 	}
-	url := *mapping.Url
-	return c.Redirect(http.StatusMovedPermanently, url)
+	if mapping.Url == nil {
+		return c.Redirect(http.StatusMovedPermanently, "/")
+	}
+	return c.Redirect(http.StatusMovedPermanently, *mapping.Url)
 }
