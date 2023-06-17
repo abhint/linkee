@@ -1,0 +1,4 @@
+#DATABASE 
+*.db
+#CODE
+.vscode
