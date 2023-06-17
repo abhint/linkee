@@ -9,22 +9,22 @@ import (
 
 type URL string
 
-type UrlStruct struct {
+type URLStruct struct {
 	URL `json:"url"`
 }
 
-func Index(c echo.Context) error {
-
+func IndexHandler(c echo.Context) error {
 	return c.HTML(http.StatusOK, "<h1>Hello</h1>")
 }
-func API_RequestHandler(c echo.Context) error {
+
+func APIRequestHandler(c echo.Context) error {
 	mapping := &database.UrlMapping{}
 	db := c.Get("db").(*database.Database)
 	if db == nil {
 		return c.JSON(http.StatusInternalServerError, "Database connection is nil")
 	}
 
-	urlStruct := &UrlStruct{}
+	urlStruct := &URLStruct{}
 	if err := c.Bind(urlStruct); err != nil {
 		return c.JSON(http.StatusInternalServerError, "Error binding URL")
 	}
@@ -37,7 +37,8 @@ func API_RequestHandler(c echo.Context) error {
 	}
 	return c.JSON(http.StatusOK, mapping)
 }
-func KEY_RequestHandler(c echo.Context) error {
+
+func KeyRequestHandler(c echo.Context) error {
 	key := c.Param("key")
 	mapping := &database.UrlMapping{}
 	db := c.Get("db").(*database.Database)

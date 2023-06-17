@@ -18,8 +18,8 @@ func main() {
 	app := echo.New()
 
 	app.Use(middleware.DatabaseMW(db))
-	app.GET("/", router.Index)
-	app.POST("/api", router.API_RequestHandler)
-	app.GET("/:key", router.KEY_RequestHandler)
-	app.Start(":4000")
+	app.GET("/", router.IndexHandler)
+	app.POST("/api", router.APIRequestHandler)
+	app.GET("/:key", router.KeyRequestHandler)
+	app.Start(":5000")
 }
