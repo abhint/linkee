@@ -17,7 +17,7 @@ func Index(c echo.Context) error {
 
 	return c.HTML(http.StatusOK, "<h1>Hello</h1>")
 }
-func RequestHandler(c echo.Context) error {
+func API_RequestHandler(c echo.Context) error {
 	mapping := &database.UrlMapping{}
 	db := c.Get("db").(*database.Database)
 	if db == nil {
@@ -36,4 +36,14 @@ func RequestHandler(c echo.Context) error {
 		return c.JSON(http.StatusOK, "Error inserting URL")
 	}
 	return c.JSON(http.StatusOK, mapping)
+}
+func KEY_RequestHandler(c echo.Context) error {
+	key := c.Param("key")
+	mapping := &database.UrlMapping{}
+	db := c.Get("db").(*database.Database)
+	if err := db.UrlMappings.Select(key, mapping); err != nil {
+		c.Redirect(http.StatusMovedPermanently, "/")
+	}
+	url := *mapping.Url
+	return c.Redirect(http.StatusMovedPermanently, url)
 }
