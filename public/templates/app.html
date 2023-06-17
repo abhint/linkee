@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Shorten your long URLs quickly and easily with Linkee. Start using our free URL shortener today.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Baloo+Tammudu+2:wght@600&display=swap" rel="stylesheet">
@@ -15,37 +17,33 @@
         crossorigin="anonymous"></script>
     <script src="/static/js/app.js"></script>
     <link rel="stylesheet" href="/static/css/app.css">
-    <title>Linkee</title>
+    <title>Linkee - Shorten URLs for Free</title>
 </head>
 
 <body>
-    <section class="block-content container-md position-absolute top-50 start-50 translate-middle">
-        <h2 class="display-5">Shorten a long link</h2>
-        <section>
+    <section class="container d-flex justify-content-center align-items-center min-vh-100">
+        <div class="block-content">
+            <h1 class="display-5 text-center mb-4">Shorten a long link</h1>
             <div class="mb-3">
-                <label for="basic-url" class="form-label">Past your long URL</label>
+                <label for="long_url" class="form-label">Paste your long URL</label>
                 <div class="input-group">
                     <input type="url" class="form-control input-box" id="long_url"
                         aria-describedby="basic-addon3 basic-addon4">
                 </div>
-                <!-- <div class="form-text" id="basic-addon4">Example help text goes outside the input group.</div> -->
             </div>
-        </section>
-        <section id="short_url_result_block">
-            <div class="mb-3">
-                <label for="basic-url" class="form-label">Result</label>
+            <div id="short_url_result_block" class="mb-3">
+                <label for="short_url" class="form-label">Result</label>
                 <div class="input-group">
                     <input type="text" class="form-control input-box" id="short_url"
                         aria-describedby="basic-addon3 basic-addon4">
                 </div>
-                <!-- <div class="form-text" id="basic-addon4">Example help text goes outside the input group.</div> -->
             </div>
-        </section>
-        <section>
-            <button type="button" class="btn btn-primary btn-md" value="Shorten" id="shorten-btn">
-                <span id="spinner" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-            </button>
-        </section>
+            <div>
+                <button type="button" class="btn btn-primary btn-md w-100" value="Shorten" id="shorten-btn">
+                    <span id="spinner" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                </button>
+            </div>
+        </div>
     </section>
 </body>
 
