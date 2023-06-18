@@ -1,0 +1,49 @@
+:root {
+    --primary-color: #007bff;
+    --light-background: #f5f6f7;
+    --light-block-border: #ced4da;
+    --light-block-background: #fff;
+    --light-input-border-color: #d3d4d7;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--light-background);
+  }
+  
+  .block-content {
+    background-color: var(--light-block-background);
+    padding: 30px;
+    box-shadow: 0 1px 4px rgba(21, 27, 38, 0.12);
+    border-radius: 8px;
+  }
+  
+  .block-content .input-box {
+    border: solid 1px var(--light-input-border-color);
+    border-radius: 8px;
+    padding: 16px 20px;
+    width: 100%;
+    height: auto;
+  }
+  
+  .block-content .form-label,
+  .block-content .display-5 {
+    font-family: 'Baloo Tammudu 2', cursive;
+  }
+  
+  .input-group .input-box:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+  }
+  
+  .btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+  }
+  
+  .btn-primary:hover {
+    background-color: #0069d9;
+    border-color: #0062cc;
+  }
+  

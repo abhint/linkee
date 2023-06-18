@@ -1,0 +1,9 @@
+
+CREATE TABLE IF NOT EXISTS UrlMapping (
+    id INTEGER PRIMARY KEY,
+    key TEXT NOT NULL,
+    url TEXT NOT NULL,
+    date_time TIMESTAMP NOT NULL DEFAULT (datetime('now')),
+    view INTEGER NOT NULL DEFAULT 0,
+    length INTEGER NOT NULL
+);
