@@ -1,10 +1,12 @@
 package main
 
 import (
+	"fmt"
 	"io"
 	"log"
 	"text/template"
 
+	"github.com/abhint/linkee/config"
 	"github.com/abhint/linkee/database"
 	"github.com/abhint/linkee/middleware"
 	"github.com/abhint/linkee/router"
@@ -20,7 +22,12 @@ func (t *Template) Render(w io.Writer, name string, data interface{}, c echo.Con
 }
 
 func main() {
-	db, err := database.NewDatabase("sqlite3", "test.db")
+	config, err := config.LoadConfig("config.yaml")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	db, err := database.NewDatabase(config)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -34,5 +41,6 @@ func main() {
 	app.GET("/", router.IndexHandler)
 	app.POST("/api", router.APIRequestHandler)
 	app.GET("/:key", router.KeyRequestHandler)
-	app.Start(":5000")
+	app.Start(fmt.Sprintf("%v:%v", config.Host, config.Port))
+
 }
