@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"io/ioutil"
 
+	"github.com/abhint/linkee/config"
 	_ "github.com/mattn/go-sqlite3"
 )
 
@@ -11,9 +12,9 @@ type Database struct {
 	UrlMappings UrlMappingsQuery
 }
 
-func NewDatabase(driverName, dataSourceName string) (*Database, error) {
+func NewDatabase(config *config.Config) (*Database, error) {
 
-	db, err := sql.Open(driverName, dataSourceName)
+	db, err := sql.Open("sqlite3", config.DataSourceName)
 	if err != nil {
 		println(err)
 		return nil, err
@@ -30,7 +31,6 @@ func NewDatabase(driverName, dataSourceName string) (*Database, error) {
 		println(err)
 		return nil, err
 	}
-	print("STARTING DATABASE")
 	return &Database{
 		UrlMappings: NewUrlMappings(db),
 	}, nil
