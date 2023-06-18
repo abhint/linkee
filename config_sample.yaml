@@ -1,0 +1,6 @@
+databaseConfig:
+  dataSourceName: linkee.db
+
+hostConfig:
+  host: localhost
+  port: 5000
